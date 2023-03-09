@@ -26,13 +26,34 @@ class VideoRepository {
     }
 
     getByUser(req: Request, res: Response) {
-        const { user_id } = req.body
+        const { user_id } = req.params
 
         pool.getConnection((err: any, connection: any) => {
 
             connection.query(
                 'SELECT * FROM videos WHERE user_id = ?',
                 [user_id],
+                (error: any, data: any, fields: any) => {
+                    connection.release()
+                    if (error) {
+                        return res.status(400).json({ error: "Erro ao buscar videos" })
+                    }
+
+                    res.status(200).json({ message: "Video buscados com sucesso", videos: data })
+                }
+            )
+
+        })
+    }
+
+    search(req: Request, res: Response) {
+        const { search } = req.query
+
+        pool.getConnection((err: any, connection: any) => {
+
+            connection.query(
+                'SELECT * FROM videos WHERE title LIKE ?',
+                [`%${search}%`],
                 (error: any, data: any, fields: any) => {
                     connection.release()
                     if (error) {
