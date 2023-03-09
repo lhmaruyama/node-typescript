@@ -1,5 +1,5 @@
 import express from "express";
-import {config} from "dotenv"
+import { config } from "dotenv"
 import { userRoutes } from "./routes/user.routes";
 import { videosRoutes } from "./routes/videos.routes";
 
