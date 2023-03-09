@@ -1,6 +1,0 @@
-SECRET=segredo
-USER=root
-PASSWORD=hemaru12
-DATABASE=node-mariadb
-HOST=localhost
-PORT=3306

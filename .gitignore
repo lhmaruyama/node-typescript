@@ -2,3 +2,4 @@
 database.ts
 .env
 .env copy
+.env-copy
